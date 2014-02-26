@@ -52,7 +52,11 @@
 					$(".qa-main textarea").keyup( function() {
 						warn_on_leave = true;
 					});
-					
+					$("input:submit").click( function() {
+						warn_on_leave = false;
+						return true;
+					});
+				
 					// for CKEditor fields
 					if(typeof(CKEDITOR) !== "undefined") {
 						CKEDITOR.on("currentInstance", function() {
@@ -61,10 +65,6 @@
 									warn_on_leave = true;
 								});
 							} catch (err) { }
-						});
-						$("input:submit").click( function() {
-							warn_on_leave = false;
-							return true;
 						});
 					}
 					
