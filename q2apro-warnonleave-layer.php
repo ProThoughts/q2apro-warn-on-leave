@@ -68,8 +68,20 @@
 						});
 					}
 					
+					// for sceditor fields
+					function checkSCEditor() {
+						if(typeof $.fn.sceditor !== "undefined") {
+							$(".sceditor-container iframe").each( function() {
+								if($(this).contents().find("body>p").text()!="") {
+									warn_on_leave = true;
+								}
+							});
+						}
+					}
+					
 					// show popup when leaving
 					$(window).bind("beforeunload", function() {
+						checkSCEditor();
 						if(warn_on_leave) {
 							return "'.qa_lang('q2apro_warnonleave_lang/warnmsg').'";
 						}
