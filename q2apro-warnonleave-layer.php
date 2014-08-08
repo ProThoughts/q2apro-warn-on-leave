@@ -47,11 +47,12 @@
 				
 					var warn_on_leave = false;
 					
-					// for pure textareas
-					//$(".qa-main").on("key", "textarea", function() {
+					// for content fields
 					$(".qa-main textarea").keyup( function() {
 						warn_on_leave = true;
 					});
+					
+					// let submit through
 					$("input:submit").click( function() {
 						warn_on_leave = false;
 						return true;
@@ -68,20 +69,8 @@
 						});
 					}
 					
-					// for sceditor fields
-					function checkSCEditor() {
-						if(typeof $.fn.sceditor !== "undefined") {
-							$(".sceditor-container iframe").each( function() {
-								if($(this).contents().find("body>p").text()!="") {
-									warn_on_leave = true;
-								}
-							});
-						}
-					}
-					
 					// show popup when leaving
 					$(window).bind("beforeunload", function() {
-						checkSCEditor();
 						if(warn_on_leave) {
 							return "'.qa_lang('q2apro_warnonleave_lang/warnmsg').'";
 						}
